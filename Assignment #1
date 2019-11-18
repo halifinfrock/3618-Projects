@@ -1,0 +1,7 @@
+
+> row1 <- c(1,2,3,4,5,6)
+> row2 <- c(7,8,9,10,11,12)
+> rownames <- c("Dracula", "Frankenstein")
+> colnames <- c("Kit Kat", "Snickers", "M&Ms", "Skittles", "Sour Patch Kids", "Starburst")
+> dimnames <- list(rownames,colnames)
+> M <- matrix(c(row1, row2),nrow= 2, ncol= 6, byrow= TRUE ,dimnames= dimnames)
