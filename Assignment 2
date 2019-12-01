@@ -1,1 +1,55 @@
+# This script creates an amortization table.
+
+#the next 3 lines assigns given values
+
+n <- 10
+L <- 200000
+i <- .03
+
+#this converts the number of years into number of months
+
+n <- 10 * 12
+
+#The next two lines converts known information into useful information
+
+monthly_rate <- i/12
+
+payment_size <- L/((1-(1/(1+monthly_rate))^n)/monthly_rate)
+
+#assign values for amortization table
+
+I <- 0
+PR <- 0
+
+# use time as an index
+
+t <-0
+
+#create first row of table
+
+amortization_table <-matrix(c(0, 0, L), ncol = 3)
+
+#develop rest of table
+
+repeat { 
+  t <-t +1
+  
+  I <- L*monthly_rate
+    PR <- L - I
+    L <- L - payment_size + I
+  amortization_table <- rbind(amortization_table,
+                                 c(I, PR,L))
+  if (t > n)
+  {break}
+  
+}
+
+#assign column and row names
+rownames <- seq(0,120,1)
+colnames <- c("Interest Paid", "Principal Repaid", "Outstanding Balance")
+
+amortization_table <- matrix(amortization_table, ncol=3, dimnames = list(rownames, colnames))
+
+#print table
+amortization_table
 
